@@ -1,2 +1,3 @@
 # lyx
-Bot discord (principal on espère)
+Bot discord 
+(principal on espère)
