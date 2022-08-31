@@ -1,31 +1,42 @@
 const { Client, GatewayIntentBits, Partials, Collection } = require("discord.js");
 const { User, Message, GuildMember, ThreadMember } = Partials;
 
-const Util = require("./utils/structures/utils");
+const { loadEvents, loadCommands, loadAppCommands, loadButtons, loadTriggers, loadModals, loadSelects } = require('./utils/handlers')
 
-if (process.env["WEBHOOK_URL"]) {
-  require("./utils/handlers/antiCrash")(client);
-}
+const Util = require("./utils/structures/utils");
 
 const client = new Client({
   intents: 3276799,
   partials: [User, Message, GuildMember, ThreadMember]
 });
 
-const { loadEvents } = require("./utils/handlers/eventHandler");
+// require("./utils/handlers/antiCrash")(client);
+// const { loadEvents } = require("./utils/handlers/eventHandler");
 
 client.events = new Collection();
-client.commands = new Collection();
+client.commands = new Collection(); 
+client.applicationCommands = new Collection();
+
 client.buttons = new Collection();
+client.selectMenus = new Collection();
+client.modals = new Collection();
 
+client.triggers = new Collection();
+client.cooldowns = new Collection();
+
+client.tools = require(`./utils/tools`);
 client.config = require("./utils/config");
-client.utils = new Util(client);
 
-// require("./utils/functions")(client);
+client.utils = Util;
 
-client.login(client.config.bot.token)
-  .then(() => {
-    loadEvents(client);
+client.login(process.env["TOKEN"])
+  .then(async() => {
+    await loadEvents(client);
+    await loadButtons(client);
+    await loadCommands(client);
+    await loadTriggers(client);
+    await loadModals(client);
+    await loadSelects(client);
   })
   .catch(
     (err) => console.log(err)

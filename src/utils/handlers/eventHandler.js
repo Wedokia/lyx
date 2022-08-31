@@ -37,11 +37,11 @@ async function loadEvents(client) {
           client.once(event.name, (...args) => event.execute(...args, client));
         else client.on(event.name, (...args) => event.execute(...args, client));
       }
-      table.addRow(emoji, file.replace(".js", "").replace("/home/runner/Lix/src/events/",""), status);
+      table.addRow(emoji, file.replace(".js", "").replace(`${process.cwd()}/src/events/`,""), status);
     }
   })
 
-  return console.log(table.toString(), "\n Loaded Events\n");
+  return console.log(table.toString(),  `\n Loaded ${client.events.size} Events\n`);
 
 }
 

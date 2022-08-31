@@ -1,11 +1,14 @@
 module.exports = {
   bot: {
-    token: process.env["TOKEN"]
+    token: process.env["TOKEN"],
+    prefix:'!'
   },
+  ownerList: ["622711414121037835"],
+  
   databaseURI: process.env["DATABASE_URI"],
   
   guilds: {
-    developerGuild: "1008057603357675551",
+    developerGuild: "847949304890916964",
   },
   embeds: {
     
