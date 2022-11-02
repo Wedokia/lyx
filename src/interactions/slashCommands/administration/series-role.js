@@ -60,6 +60,7 @@ module.exports = {
 
     const type = interaction.options.getString("type");
     let roleID = ""
+    let future_position
 
     if (type) {
       switch (type) {
@@ -95,7 +96,7 @@ module.exports = {
         }
       }
       const refRole = interaction.guild.roles.cache.get(roleID);
-      const position = refRole.position + 1
+      future_position = refRole.position + 1
 
     }
 
@@ -111,9 +112,9 @@ module.exports = {
           name: name,
           color: color,
           reason: 'rôle séries', type,
-          position: position
+          position: future_position
         }).then(() => {
-          interaction.reply(`Rôle ${type} \`${name}\` (position: ${position}) créé avec succès`)
+          interaction.reply(`Rôle ${type} \`${name}\` (position: ${future_position}) créé avec succès`)
         }).catch(e => {
           console.error(e)
           interaction.reply(`Erreur lors de la création du rôle.`)

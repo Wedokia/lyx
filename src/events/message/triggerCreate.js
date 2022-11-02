@@ -1,7 +1,7 @@
 module.exports = {
 	name: "messageCreate",
 
-	async execute(message) {
+	async execute(message, client) {
 		
 		const args = message.content.split(/ +/);
 
@@ -23,7 +23,7 @@ module.exports = {
 
 				if (message.content.includes(name)) {
 					try {
-						trigger.execute(message, args);
+						trigger.execute(message, args, client);
 					} catch (error) {
 						// If triggereds fail, reply back!
 

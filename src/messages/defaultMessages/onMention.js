@@ -1,13 +1,9 @@
-const { prefix } = require("../config.json");
+
 
 module.exports = {
-	/**
-	 * @description Executes when the bot is pinged.
-	 * @author Naman Vrati
-	 * @param {import('discord.js').Message} message The Message Object of the command.
-	 */
 
-	async onMentionMessage(message) {
+	async onMentionMessage(message, client) {
+    const prefix = client.config.bot.prefix;
 		return message.channel.send(
 			`Hi ${message.author}! My prefix is \`${prefix}\`, get help by \`${prefix}help\``
 		);

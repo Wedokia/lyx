@@ -1,9 +1,12 @@
-
+const { buttonError } = require('./defaultButtonError');
+const { modalError } = require('./defaultModalError');
+const { selectError } = require('./defaultSelectError');
+const { onMentionMessage } = require('./onMention');
 
 
 module.exports = {
-  buttonError: require('./defaultButtonError'),
-  modalError: require('./defaultModalError'),
-  selectError:require('./defaultSelectError'),
-  onMentionMessage: require('./onMention')
+  buttonError: buttonError,
+  modalError: modalError,
+  selectError: selectError,
+  onMentionMessage: onMentionMessage
 }

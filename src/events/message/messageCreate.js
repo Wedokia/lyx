@@ -22,7 +22,7 @@ module.exports = {
 			message.content == `<@!${client.user.id}>`
 		) {
 			const { onMentionMessage } = require("../../messages/defaultMessages")
-			return onMentionMessage(message);
+			return onMentionMessage(message, client);
 		}
 
 		
